@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'P4SBonjour.urls'
+ROOT_URLCONF = 'P4SBonjour.Setup.urls'
 
 TEMPLATES = [
     {
