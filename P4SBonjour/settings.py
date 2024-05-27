@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from P4SBonjour import bonjour_app
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'P4SBonjour.bonjour_app',
 ]
 
 MIDDLEWARE = [
@@ -49,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'P4SBonjour.Setup.urls'
+ROOT_URLCONF = 'P4SBonjour.urls'
 
 TEMPLATES = [
     {
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'P4SBonjour.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Bonjour_Inventory',
+        'USER': 'root',
+        'PASSWORD': 'Buddyisawesome1!',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
