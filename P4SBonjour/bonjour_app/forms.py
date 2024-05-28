@@ -1,8 +1,8 @@
 from django import forms
-from .models import Item
+from .models import Supplier
 
 
-class ItemForm(forms.ModelForm):
+class SupplierForm(forms.ModelForm):
     class Meta:
-        model = Item
-        fields = ['item_name', 'description', 'supplier']
+        model = Supplier
+        fields = ['supplier_name', 'contact_info']

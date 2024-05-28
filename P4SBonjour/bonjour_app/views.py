@@ -1,24 +1,25 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Item
-from .forms import ItemForm
+from .models import Supplier
+from .forms import SupplierForm
 
 def home(request):
-    items = Item.objects.all()
-    return render(request, 'home.html', {'items': items})
+    suppliers = Supplier.objects.all()
+    return render(request, 'home.html', {'suppliers': suppliers})
 
 
-def add_item(request):
+def add_supplier(request):
     if request.method == 'POST':
-        form = ItemForm(request.POST)
+        form = SupplierForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
     else:
-        form = ItemForm()
-    return render(request, 'add_item.html', {'form': form})
+        form = SupplierForm()
+    return render(request, 'add_supplier.html', {'form': form})
 
 
-def view_item(request, item_id):
-    item = get_object_or_404(Item, id=item_id)
-    return render(request, 'view_item.html', {'item': item})
+def view_supplier(request):
+    supplier_id = request.GET.get('supplier_id')
+    supplier = get_object_or_404(Supplier, id=supplier_id)
+    return render(request, 'view_supplier.html', {'supplier': supplier})
