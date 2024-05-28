@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Warehouse List</title>
+</head>
+<body>
+    <h1>Warehouse List</h1>
+    <table border="1">
+        <tr>
+            <th>Warehouse Name</th>
+            <th>Location</th>
+        </tr>
+        {% for warehouse in warehouses %}
+        <tr>
+            <td><a href="{% url 'warehouse_summary' warehouse.id %}">{{ warehouse.warehouse_name }}</a></td>
+            <td>{{ warehouse.location }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="{% url 'add_warehouse' %}">
+        <button type="submit">Add New Warehouse</button>
+    </form>
+    <br>
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>

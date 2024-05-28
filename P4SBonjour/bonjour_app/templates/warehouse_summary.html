@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Warehouse Summary</title>
+</head>
+<body>
+    <h1>Warehouse: {{ warehouse.warehouse_name }}</h1>
+    <p><strong>Location:</strong> {{ warehouse.location }}</p>
+    <p><strong>Inventory Items:</strong></p>
+    <table border="1">
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+        </tr>
+        {% for item in inventory_items %}
+        <tr>
+            <td>{{ item.item.item_name }}</td>
+            <td>{{ item.quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">No items found in this warehouse.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'warehouse_list' %}">Back to Warehouse List</a>
+</body>
+</html>
