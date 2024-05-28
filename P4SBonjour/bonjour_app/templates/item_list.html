@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item List</title>
+</head>
+<body>
+    <h1>Item List</h1>
+    <table border="1">
+        <tr>
+            <th>Item Name</th>
+            <th>Total Quantity</th>
+        </tr>
+        {% for item in item_data %}
+        <tr>
+            <td><a href="{% url 'view_item' item.item.id %}">{{ item.item.item_name }}</a></td>
+            <td>
+                {% if item.total_quantity == '-' %}
+                {{ item.total_quantity }}
+                {% else %}
+                    <a href="{% url 'inventory_summary' item.item.id %}">{{ item.total_quantity }}</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="{% url 'add_item' %}">
+        <button type="submit">Add New Item</button>
+    </form>
+    <br>
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>
