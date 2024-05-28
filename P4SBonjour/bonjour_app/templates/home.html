@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <form action="{% url 'view_item' item_id=selected_item %}">
+        <select name="selected_item">
+            {% for item in items %}
+            <option value="{{ item.id }}">{{ item.item_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">View Item</button>
+    </form>
+    <br>
+    <a href="{% url 'add_item' %}"><button>Add Item</button></a>
+</body>
+</html>
