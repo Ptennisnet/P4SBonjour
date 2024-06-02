@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Summary</title>
+</head>
+<body>
+    <h1>Inventory Summary for {{ item.item_name }}</h1>
+    <table border="1">
+        <tr>
+            <th>Warehouse Name</th>
+            <th>Location</th>
+            <th>Quantity</th>
+        </tr>
+        {% for inventory in inventories %}
+        <tr>
+            <td>{{ inventory.warehouse.warehouse_name }}</td>
+            <td>{{ inventory.warehouse.location }}</td>
+            <td>{{ inventory.quantity }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2"><strong>Total Quantity</strong></td>
+            <td><strong>{{ total_quantity }}</strong></td>
+        </tr>
+    </table>
+    <br>
+    <a href="{% url 'item_list' %}">Back to Item List</a>
+</body>
+</html>

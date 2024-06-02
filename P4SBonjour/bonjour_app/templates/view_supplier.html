@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supplier Details</title>
+</head>
+<body>
+    <h1>Supplier: {{ supplier.supplier_name }}</h1>
+    <p><strong>Contact Information:</strong> {{ supplier.contact_information }}</p>
+    <h2>Items Supplied</h2>
+    {% if items_supplied %}
+        <ul>
+        {% for item in items_supplied %}
+            <li>{{ item.item_name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>This supplier currently supplies no items.</p>
+    {% endif %}
+    <a href="{% url 'supplier_list' %}">Back to Supplier List</a>
+</body>
+</html>

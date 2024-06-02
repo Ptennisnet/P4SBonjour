@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supplier List</title>
+</head>
+<body>
+    <h1>Supplier List</h1>
+    <table border="1">
+        <tr>
+            <th>Supplier Name</th>
+            <th>Contact Info</th>
+            <th>Supplied Items</th>
+        </tr>
+        {% for supplier in supplier_data %}
+        <tr>
+            <td>{{ supplier.supplier.supplier_name }}</td>
+            <td>{{ supplier.supplier.contact_info }}</td>
+            <td>
+                {% if supplier.items_supplied %}
+                    <ul>
+                    {% for item in supplier.items_supplied %}
+                        <li>{{ item.item_name }}</li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="{% url 'add_supplier' %}">
+        <button type="submit">Add New Supplier</button>
+    </form>
+    <br>
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>
