@@ -1,20 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warehouse Summary</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Warehouse: {{ warehouse.warehouse_name }}</h1>
     <p><strong>Location:</strong> {{ warehouse.location }}</p>
     <p><strong>Inventory Items:</strong></p>
-    <table border="1">
+    <table>
         <tr>
             <th>Item Name</th>
             <th>Quantity</th>
         </tr>
         {% for item in inventory_items %}
         <tr>
-            <td>{{ item.item.item_name }}</td>
+            <td><a href="{% url 'view_item' item.item.id %}">{{ item.item.item_name }}</a></td>
             <td>{{ item.quantity }}</td>
         </tr>
         {% empty %}
@@ -23,7 +82,6 @@
         </tr>
         {% endfor %}
     </table>
-    <br>
     <a href="{% url 'warehouse_list' %}">Back to Warehouse List</a>
 </body>
 </html>
