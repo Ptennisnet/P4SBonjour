@@ -44,6 +44,12 @@ INSTALLED_APPS = [
     'P4SBonjour.bonjour_app',
 ]
 
+SESSION_COOKIE_AGE = 43200  # 12 hours
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_COOKIE_NAME = 'sessionid'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
