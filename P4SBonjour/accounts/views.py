@@ -28,8 +28,26 @@ def login_view(request):
             return redirect('home')
         else:
             # Return an 'invalid login' error message.
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'login_incorrect.html', {'error': 'Invalid username or password'})
     return render(request, 'login.html')
+
+
+def login_incorrect_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            # Return an 'invalid login' error message.
+            return render(request, 'login_incorrect.html', {'error': 'Invalid username or password'})
+    return render(request, 'login_incorrect.html')
+
+
+def login_lockout_view(request):
+    return render(request, 'login_lockout.html')
 
 
 def logout_view(request):
