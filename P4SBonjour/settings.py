@@ -44,11 +44,11 @@ INSTALLED_APPS = [
     'P4SBonjour.bonjour_app',
 ]
 
-SESSION_COOKIE_AGE = 43200  # 12 hours
+SESSION_COOKIE_AGE = 43200
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-SESSION_COOKIE_NAME = 'sessionid'
+SESSION_COOKIE_NAME = 'sessionID'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'P4SBonjour.accounts.middleware.LoginDelayMiddleware',
+    'P4SBonjour.accounts.middleware.LoginLockoutMiddleware',
 ]
 
 ROOT_URLCONF = 'P4SBonjour.urls'
@@ -135,3 +137,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login'
+
+MAX_LOGIN_ATTEMPTS = 1
+LOGIN_TIMEOUT = 300

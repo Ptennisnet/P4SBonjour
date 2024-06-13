@@ -69,6 +69,11 @@
         {{ form.as_p }}
         <button type="submit">Update Stock</button>
     </form>
-    <a href="{% url 'home' %}">Home</a>
+    <button onclick="goBack()">Back</button>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>

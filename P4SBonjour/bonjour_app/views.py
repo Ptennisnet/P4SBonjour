@@ -1,18 +1,30 @@
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Supplier, Item, Inventory, Warehouse
 from .forms import SupplierForm, ItemForm, WarehouseForm, InventoryForm
 
 
+def staff_required(view_func):
+    decorated_view_func = user_passes_test(
+        lambda user: user.is_staff,
+        login_url='/login/',
+    )(view_func)
+    return decorated_view_func
+
+
 @login_required
 def home(request):
-    suppliers = Supplier.objects.all()
-    return render(request, 'home.html', {'suppliers': suppliers})
+    return render(request, 'home.html')
 
 
-@login_required
+@staff_required
+def update_database(request):
+    return render(request, 'update_database.html')
+
+
+@staff_required
 def add_supplier(request):
     if request.method == 'POST':
         form = SupplierForm(request.POST)
@@ -24,7 +36,7 @@ def add_supplier(request):
     return render(request, 'add_supplier.html', {'form': form})
 
 
-@login_required
+@staff_required
 def add_item(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
@@ -39,7 +51,7 @@ def add_item(request):
         return render(request, 'add_item.html', {'form': form})
 
 
-@login_required
+@staff_required
 def add_warehouse(request):
     if request.method == 'POST':
         form = WarehouseForm(request.POST)
@@ -54,7 +66,7 @@ def add_warehouse(request):
         return render(request, 'add_warehouse.html', {'form': form})
 
 
-@login_required
+@staff_required
 def update_stock(request):
     if request.method == 'POST':
         form = InventoryForm(request.POST)
