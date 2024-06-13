@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Update Database</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -53,38 +53,24 @@
             background-color: #0056b3;
         }
 
-        a.logout {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s ease;
-            margin-bottom: 10px;
-        }
-
-        a.logout:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bonjour {{ user }}</h1>
-        <form action="{% url 'item_list' %}">
-            <button type="submit">Item List</button>
+        <h1>Update Database</h1>
+        <form action="{% url 'add_item' %}">
+            <button type="submit">Add Item</button>
         </form>
-        <form action="{% url 'supplier_list' %}">
-            <button type="submit">Supplier List</button>
+        <form action="{% url 'add_supplier' %}">
+            <button type="submit">Add Supplier</button>
         </form>
-        <form action="{% url 'warehouse_list' %}">
-            <button type="submit">Warehouse List</button>
+        <form action="{% url 'add_warehouse' %}">
+            <button type="submit">Add Warehouse</button>
         </form>
-        {% if user.is_staff %}
-            <form action="{% url 'update_database' %}">
-                <button type="submit">Update Database</button>
-            </form>
-        {% endif %}
-        <a href="{% url 'logout' %}" class="logout">Logout</a>
+        <form action="{% url 'update_stock' %}">
+            <button type="submit">Update Stock</button>
+        </form>
+        <a href="{% url 'home' %}">Home</a>
     </div>
 </body>
 </html>

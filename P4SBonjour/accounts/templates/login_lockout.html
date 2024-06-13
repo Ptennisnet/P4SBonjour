@@ -81,18 +81,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Login</h1>
-        <form id="loginForm" method="post" onsubmit="{% url 'login' %}">
-            {% csrf_token %}
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <div id="errorMessage" class="error" style="display: none;">Wrong Password, Buddy</div>
+        <h1>Login Timeout</h1>
+        <div id="errorMessage" class="error">Password Attempts expired. Try again in {{ LOGIN_TIMEOUT }} seconds.</div>
     </div>
 </body>
 </html>
-
-
