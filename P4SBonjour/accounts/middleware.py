@@ -1,9 +1,11 @@
+import mailbox
 import time
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.core.cache import cache
 from django.conf import settings
+import accesscontrol
 
 
 class LoginDelayMiddleware:
@@ -23,6 +25,15 @@ class LoginDelayMiddleware:
 
         response = self.get_response(request)
         return response
+
+
+class CriticalFunction:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if "superuser_password":
+            cache_super = accesscontrol.get_super_user(1024)
 
 
 class LoginLockoutMiddleware:
