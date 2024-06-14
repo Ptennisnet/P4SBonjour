@@ -1,5 +1,4 @@
 from django.db import models
-# this file is where I need to create the 'tables' or rather the data entities we require for the app
 
 
 class Supplier(models.Model):

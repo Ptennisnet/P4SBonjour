@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFA Code Sent</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>MFA Code Sent</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>A Multi-Factor Authentication (MFA) code has been sent to your email.</p>
+                        <p>Please check your email and enter the code on the next page to verify your identity.</p>
+                        <a href="{% url 'verify_mfa' %}" class="btn btn-primary">Verify MFA Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

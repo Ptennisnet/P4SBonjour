@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.core.cache import cache
 from django.conf import settings
+from django.urls import reverse
 
 
 class LoginDelayMiddleware:
@@ -25,6 +26,9 @@ class LoginDelayMiddleware:
         return response
 
 
+# class adminOnly:
+#     def __init__(self, ):
+
 class LoginLockoutMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -42,7 +46,7 @@ class LoginLockoutMiddleware:
 
                 user = authenticate(request, username=username, password=request.POST.get('password'))
                 if user is None:
-                    login_attempts['count'] += 1
+                    login_attempts['count'] += 3
                     login_attempts['last_attempt_time'] = time.time()
                     cache.set(cache_key, login_attempts, timeout=settings.LOGIN_TIMEOUT)
                 else:
@@ -50,3 +54,16 @@ class LoginLockoutMiddleware:
 
         response = self.get_response(request)
         return response
+
+
+class MFAMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if False:
+            if request.user.is_authenticated and not request.session.get('mfa_verified', False):
+                if request.path not in [reverse('send_mfa_code'), reverse('verify_mfa')]:
+                    return redirect('send_mfa_code')
+            response = self.get_response(request)
+            return response
