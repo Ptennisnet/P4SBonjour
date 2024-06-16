@@ -11,7 +11,7 @@
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="inventory" uuid="645c6024-d5cf-44bc-8246-cdd6ddee2b42">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>02640eae-9f40-4be4-87de-957eb7861753</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\matth\OneDrive\Documents\GitHub\P4SBonjour\inventory.db</jdbc-url>
