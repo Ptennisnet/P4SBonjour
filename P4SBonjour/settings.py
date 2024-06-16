@@ -17,7 +17,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(BASE_DIR)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'P4SBonjour.accounts',
     'P4SBonjour.bonjour_app',
-    'dbbackup'
 ]
 
 SESSION_COOKIE_AGE = 43200
@@ -114,49 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Logging setup
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'standard': {
-            'format': '{asctime} [{levelname}] {name}:{lineno} {message}',
-            'style': '{',
-        },
-        'json': {
-            'format': '{{"time": "{asctime}", "level": "{levelname}", "name": "{name}", "lineno": {lineno}, "message": "{message}"}}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR, 'P4SBonjour/logs', 'django_debug.log'),
-            'maxBytes': 1024*1024*5,  # 5MB
-            'backupCount': 7,
-            'formatter': 'standard',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'standard',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file', 'console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['file', 'console'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
-    },
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
