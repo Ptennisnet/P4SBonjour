@@ -1,5 +1,5 @@
 import time
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.core.cache import cache
@@ -23,6 +23,7 @@ class LoginDelayMiddleware:
 
         response = self.get_response(request)
         return response
+
 
 
 class LoginLockoutMiddleware:

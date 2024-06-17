@@ -26,9 +26,9 @@ print(BASE_DIR)
 SECRET_KEY = 'django-insecure-5&-!-o#$p$u2oa#1ga$4*a1v*rt$=79k63(@efruh0-iwob6sw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -64,6 +64,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'P4SBonjour.urls'
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Strong'
 
 TEMPLATES = [
     {
